@@ -16,18 +16,23 @@ function Header() {
     setYear(e.target.value);
   }
  
-  var [futureAge, setFutureAge] = useState(0);
+  var [futureAge, setFutureAge] = useState('');
   function calc() {
-    setFutureAge(Number(year) - Number(currentYear) + Number(age));
+    setFutureAge("you will be "+ (Number(year) - Number(currentYear) + Number(age)));
+    if((Number(year) - Number(currentYear) + Number(age))<0 ){ //For handling the case when
+    //  the user enter a year they weren't born in
+      setFutureAge(" You weren't born in "+ year)
+    }
   }
+
   return (
-    <div className="header">
-      <label >How old are you?</label>
+    <div className="header" >
+      <label htmlFor="age">How old are you?</label>
       <input type="number" id="age" onChange={handleAgeChange} min="0" />
-      <label >In which year you wanna know your age?</label>
+      <label htmlFor="year">In which year you wanna know your age?</label>
       <input type="number" id="year" onChange={handleYearChange} />
       <button onClick={calc} >Calculate</button>
-      <h3 >You are {age} years old, in {year} you will be {futureAge}</h3>
+      <h3 >You are {age} years old, in {year}, {futureAge}</h3>
     </div>
   );
 };

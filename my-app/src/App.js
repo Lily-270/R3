@@ -20,8 +20,12 @@ function Header() {
   function calc() {
     setFutureAge("you will be "+ (Number(year) - Number(currentYear) + Number(age)));
     if((Number(year) - Number(currentYear) + Number(age))<0 ){ //For handling the case when
-    //  the user enter a year they weren't born in
-      setFutureAge(" You weren't born in "+ year)
+    //  the user enters a year they weren't born in
+      setFutureAge(" You weren't born yet! ")
+    }
+    else if(Number(year)< currentYear){
+      // Use the past tense in years less than current year to indicate past age 
+      setFutureAge("you were "+ (Number(year) - Number(currentYear) + Number(age)))
     }
   }
 
